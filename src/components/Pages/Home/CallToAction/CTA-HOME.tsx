@@ -2,7 +2,7 @@ import PrimaryActionButton from "@/components/PrimaryActionButton";
 
 export default function CTAHOME() {
   return (
-    <section className="flex flex-col items-center max-w-7xl mx-auto px-6 mt-24 gap-12">
+    <section className="flex flex-col items-center max-w-7xl mx-auto px-6 mt-24 gap-12 bg-dark">
       {/* CTA Content */}
       <div className="flex flex-col lg:flex-row items-center w-full gap-12">
         {/* Text Content */}

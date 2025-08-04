@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/cvanalyzer.iml" filepath="$PROJECT_DIR$/.idea/cvanalyzer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/studaro.iml" filepath="$PROJECT_DIR$/.idea/studaro.iml" />
     </modules>
   </component>
 </project>

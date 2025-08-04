@@ -1,5 +1,5 @@
-'use client';
-import { useState } from 'react';
+"use client";
+import { useState } from "react";
 
 import NavigationTitle from "@/components/Navigation/NavigationTitle";
 import Logo from "@/components/Logo";
@@ -10,11 +10,11 @@ export default function Navbar() {
 
   const toggleMenu = () => {
     setOpen(!open);
-  }
+  };
 
   return (
     <>
-      <div className="flex justify-center p-3 mt-5 bg-dark">
+      <div className="sticky top-0 z-40 flex justify-center p-3 bg-dark backdrop-blur-sm">
         <div className="w-full max-w-7xl mx-auto flex items-center justify-between">
           {/* Left */}
           <div className="flex-shrink-0">
@@ -23,7 +23,7 @@ export default function Navbar() {
 
           {/* Middle */}
           <div className="hidden md:flex flex-1 justify-center gap-20">
-            <NavigationTitle title="Notes" />
+            <NavigationTitle title="Notes" destination={"notes"} />
             <NavigationTitle title="Tasks" />
             <NavigationTitle title="Tools" />
             <NavigationTitle title="Time Table" />
@@ -41,40 +41,52 @@ export default function Navbar() {
               className="material-symbols-outlined transition-transform duration-300 ease-in-out cursor-pointer text-3xl text-main-dark"
               onClick={toggleMenu}
             >
-              {open ? 'close' : 'menu'}
+              {"menu"}
             </span>
           </div>
         </div>
       </div>
 
-      {/* Dropdown menu outside navbar flex container */}
-      {open && (
-        <div className="fixed inset-0 z-50">
-          <div
-            className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+      {/* Hamburger menu */}
+      <div
+        className={`fixed inset-0 z-50 bg-gradient-to-b from-black/70 to-black/50 backdrop-blur-sm transition-opacity ${open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
+      >
+        {/* Slide-in Menu */}
+        <div
+          className={`absolute top-0 right-0 h-full w-3/4 sm:w-1/2 bg-dark text-white shadow-lg transform transition-transform duration-300 ease-in-out ${
+            open ? "translate-x-0" : "translate-x-full"
+          }`}
+        >
+          {/* Close Button */}
+          <button
             onClick={toggleMenu}
-          />
+            className="absolute top-5 right-5 text-3xl text-gray-400 hover:text-white cursor-pointer"
+          >
+            &times;
+          </button>
 
-          {/* Dropdown menu (centered) */}
-          <div className="absolute top-20 left-1/2 transform -translate-x-1/2 bg-dark p-6 rounded-xl shadow-xl w-[90%] max-w-sm z-50">
-            <ul className="flex flex-col space-y-4 text-main-dark text-lg">
-              <button
-                onClick={() => toggleMenu()}
-                className="absolute cursor-pointer top-3 right-3 text-2xl text-gray-400 hover:text-white transition"
-              >
-                ×
-              </button>
-              <NavigationTitle title="Home"/>
-              <NavigationTitle title="Notes"/>
-              <NavigationTitle title="Tasks"/>
-              <NavigationTitle title="Tools"/>
-              <NavigationTitle title="Time Table"/>
-              <NavigationTitle title="Log In"/>
-              <PrimaryActionButton text="Sign Up"/>
-            </ul>
+          {/* Navigation Links */}
+          <div className="flex flex-col mt-20 space-y-6 items-center text-lg font-medium">
+            <NavigationTitle
+              title="Notes"
+              className="text-lg"
+              destination={"notes"}
+            />
+            <NavigationTitle title="Tasks" className="text-lg" />
+            <NavigationTitle title="Tools" className="text-lg" />
+            <NavigationTitle title="Time Table" className="text-lg" />
+          </div>
+
+          {/* Action Buttons */}
+          <div className="flex flex-col items-center mt-10 space-y-3 px-6">
+            <NavigationTitle
+              title="Log In"
+              className="text-base text-main-dark"
+            />
+            <PrimaryActionButton text="Sign Up" className="w-full" />
           </div>
         </div>
-      )}
+      </div>
     </>
   );
 }
